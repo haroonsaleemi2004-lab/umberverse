@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Umberverse</title>
+<meta name="description" content="One year of us, mapped.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23ff3d7f' d='M2 3h4v1h1V3h4v1h1v4h-1v1h-1v1h-1v1H9v1H8v1H7v-1H6v-1H5v-1H4V9H3V8H2V4h0z'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/press-start-2p-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ======================= BOOT / CRT ======================= -->
+<section id="boot" class="screen is-on">
+  <div class="crt">
+    <div class="crt-shell">
+      <div class="crt-glass">
+        <div class="crt-inner">
+
+          <div class="boot-stage" id="bootStage">
+            <p class="boot-eyebrow">* EST. NOV 19 *</p>
+            <h1 class="boot-title">WELCOME&nbsp;TO&nbsp;THE<br><span>UMBERVERSE</span></h1>
+            <p class="boot-sub">Celebrating 1 year with you &lt;3</p>
+            <canvas id="bootHeart" class="boot-heart" width="200" height="180" aria-label="heart"></canvas>
+            <button class="boot-enter" id="enterBtn">
+              <span class="blink">&gt;</span> Click here to enter the UMBERVERSE
+            </button>
+          </div>
+
+          <div class="gate-stage" id="gateStage" hidden>
+            <p class="gate-q">SECURITY CHECK</p>
+            <h2 class="gate-title">what date is our anniversary?</h2>
+            <form class="gate-form" id="gateForm" autocomplete="off">
+              <label class="gate-row">
+                <span class="caret">&gt;</span>
+                <input id="gateInput" type="text" spellcheck="false" autocomplete="off"
+                       placeholder="type it here..." aria-label="anniversary date">
+              </label>
+              <button type="submit" class="gate-go">UNLOCK</button>
+            </form>
+            <p class="gate-msg" id="gateMsg">&nbsp;</p>
+            <button class="gate-back" id="gateBack">&lt; back</button>
+          </div>
+
+        </div>
+        <div class="crt-scan"></div>
+        <div class="crt-vignette"></div>
+        <div class="crt-flicker"></div>
+      </div>
+      <div class="crt-chin">
+        <span class="crt-brand">UMBER&nbsp;TRON&nbsp;2000</span>
+        <span class="crt-led"></span>
+      </div>
+    </div>
+    <div class="crt-stand"></div>
+    <div class="crt-base"></div>
+  </div>
+</section>
+
+<!-- ======================= MAP APP ======================= -->
+<section id="app" class="screen" hidden>
+
+  <canvas id="map"></canvas>
+
+  <header class="topbar">
+    <div class="brand">
+      <canvas class="brand-heart" width="42" height="38"></canvas>
+      <div class="brand-txt">
+        <strong>THE UMBERVERSE</strong>
+        <small>one year of us, mapped</small>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="progress-bar"><i id="progFill"></i></div>
+      <span id="progTxt">0 / 19</span>
+    </div>
+    <button class="icon-btn" id="sideToggle" title="Saved places" aria-label="Saved places">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="side-head">
+      <h2>SAVED PLACES</h2>
+      <button class="side-close" id="sideClose" aria-label="Close">×</button>
+    </div>
+    <div class="side-list" id="sideList"></div>
+    <button class="teleport" id="teleBtn">
+      <em>✈</em><span>TELEPORT TO TÜRKİYE</span>
+    </button>
+  </aside>
+
+  <div class="map-ctl">
+    <button id="zoomIn"  title="Zoom in"  aria-label="Zoom in">+</button>
+    <button id="zoomOut" title="Zoom out" aria-label="Zoom out">−</button>
+    <button id="homeBtn" title="Reset view" aria-label="Reset view">⌂</button>
+  </div>
+
+  <div class="player" id="player">
+    <div class="player-head">
+      <span class="eq"><i></i><i></i><i></i><i></i></span>
+      <strong id="npTitle">our playlist</strong>
+      <button id="npNext" title="Next song" aria-label="Next song">⏭</button>
+      <button id="npToggle" title="Hide player" aria-label="Hide player">▾</button>
+    </div>
+    <div class="player-body"><div id="spotify"></div></div>
+  </div>
+
+  <p class="hint" id="hint">drag to explore &nbsp;•&nbsp; tap a <b>♥</b> to open a memory</p>
+</section>
+
+<!-- ======================= MEMORY MODAL ======================= -->
+<div class="modal" id="modal" hidden>
+  <div class="modal-back" id="modalBack"></div>
+  <div class="modal-win" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="modal-bar">
+      <div class="m-dots"><i></i><i></i><i></i></div>
+      <h3 id="mTitle">—</h3>
+      <button class="modal-x" id="modalX" aria-label="Close">×</button>
+    </div>
+    <p class="modal-addr" id="mAddr">—</p>
+    <div class="modal-body" id="mBody"></div>
+    <div class="modal-foot">
+      <button class="btn-ghost" id="mPrev">‹ prev</button>
+      <button class="btn-main"  id="mDone">CLOSE ♥</button>
+      <button class="btn-ghost" id="mNext">next ›</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= FINALE ======================= -->
+<div class="finale" id="finale" hidden>
+  <canvas id="fx"></canvas>
+  <div class="finale-txt">
+    <p class="fin-pre">* ALL 19 MEMORIES FOUND *</p>
+    <h2 id="finMsg">Happy 1 year Anniversary Umbie.<br>I love you with all my heart</h2>
+    <canvas id="finHeart" width="180" height="162"></canvas>
+    <p class="fin-sign">— always, your Rooni</p>
+    <button class="btn-ghost" id="finClose">back to the map</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="data/mapdata.js"></script>
+<script src="data/citydata.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/locations.js"></script>
+<script src="js/tracks.js"></script>
+<script src="js/map.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/app.js"></script>
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+</body>
+</html>
