@@ -283,12 +283,87 @@
       'KSSSSSSSK',
       '.KKKKKKK.',
       '..bwbwb..'
+    ]),
+
+    /* ---- the people ----
+       9x14. Outfit bodies use k (#3d3550) rather than K so the K outline
+       still reads against them - an all-K figure renders as a silhouette. */
+
+    /* Nihal: black skull cap, brown skin, goatee, dark hoodie.
+       Cap is the same width as the head - any wider and it reads as a
+       brimmed hat instead of a skull cap. Row 1 is k, not K, so the cap
+       has a visible band - otherwise it is pixel-identical to Haroon's
+       black hair and the two faces only differ by skin tone. */
+    nihal: sprite([
+      '..KKKKK..',
+      '..kkkkk..',
+      '..nnnnn..',
+      '..nKnKn..',
+      '..nnnnn..',
+      '..nKKKn..',
+      '...KKK...',
+      '..kkkkk..',
+      '.KkkkkkK.',
+      '.KkkkkkK.',
+      '.nkkkkkn.',
+      '..kkkkk..',
+      '...K.K...',
+      '...K.K...'
+    ]),
+
+    /* Haroon: dark hair + beard, white tee, blue jeans.
+       Beard leaves a skin pixel either side so it reads as facial hair
+       rather than a band across the face; sleeves are short, so the
+       arms are skin, not shirt. */
+    haroonC: sprite([
+      '..KKKKK..',
+      '..KKKKK..',
+      '..AAAAA..',
+      '..AKAKA..',
+      '..AAAAA..',
+      '..AKKKA..',
+      '...KKK...',
+      '..WWWWW..',
+      '.AWWWWWA.',
+      '.AWWWWWA.',
+      '..WWWWW..',
+      '..BBBBB..',
+      '...B.B...',
+      '...B.B...'
+    ]),
+
+    /* Umber: long brown hair, all-black outfit, wide leg.
+       The hair runs unbroken from row 1 down to row 9 - leaving row 7
+       bare split it into two floating brown blocks that read as sleeves
+       rather than hair falling past the shoulders. */
+    umberC: sprite([
+      '..NNNNN..',
+      '.NNNNNNN.',
+      '.NAAAAAN.',
+      '.NAKAKAN.',
+      '.NAAAAAN.',
+      '.NAAAAAN.',
+      '.NNAAANN.',
+      '.NkkkkkN.',
+      '.NkkkkkN.',
+      '.NkkkkkN.',
+      '..kkkkk..',
+      '..kkkkk..',
+      '..kkkkk..',
+      '..kk.kk..'
     ])
   };
 
   /* lat, lng, sprite, label, label-from-zoom, sprite-from-zoom */
   var LANDMARKS = {
     on: [
+      /* the people - decorative only, never clickable, never counted
+         toward the 19. Umber sits a little SW of the Tillsdown pin so she
+         doesn't end up underneath its heart, which draws on a later pass. */
+      [45.3876, -75.6960, 'nihal',   'NIHAL',  7.4, 6.8],
+      [43.3255, -79.7990, 'haroonC', 'HAROON', 7.4, 6.8],
+      [43.5912, -79.7245, 'umberC',  'UMBER',  7.4, 6.8],
+
       /* headline icons - visible from the very first view */
       [43.6426, -79.3871, 'cnTower',    'TORONTO',       7.4, 6.8],
       [43.0799, -79.0747, 'niagara',    'NIAGARA FALLS', 7.4, 6.8],

@@ -567,6 +567,13 @@
       boxes.push([x - 9, y - (p.n > 1 ? 24 : 16), x + 9, y + 2]);
     });
 
+    /* Pass 1 - draw every sprite and claim the ground it stands on. This has
+       to finish before a single label is placed: in one combined pass a
+       sprite later in the list paints straight over a label already sitting
+       there, which is how HAMILTON's icon used to land on HAROON's name. The
+       claimed box stops at the anchor, not below it, so a sprite never
+       blocks its own label from the slot directly underneath. */
+    var labelled = [];
     list.forEach(function (L) {
       if (z < (L[5] == null ? 6.8 : L[5])) return;
       var p = self.toBuf(L[0], L[1]);
@@ -579,8 +586,16 @@
       c.ellipse(p[0], p[1] + 1, sp.w * scale * 0.42, scale * 1.1, 0, 0, 6.3);
       c.fill();
       blitSprite(c, sp, p[0], p[1], scale);
+      var hw = sp.w * scale / 2;
+      boxes.push([p[0] - hw, p[1] - sp.h * scale, p[0] + hw, p[1]]);
 
       if (!L[3] || z < (L[4] == null ? 7.8 : L[4])) return;
+      labelled.push([L, p, sp]);
+    });
+
+    /* Pass 2 - fit the names into whatever space is left over */
+    labelled.forEach(function (it) {
+      var L = it[0], p = it[1], sp = it[2];
       var tw = Math.round(c.measureText(L[3]).width) + 6;
       var cx = Math.round(p[0]), cy = Math.round(p[1]);
       var spots = [[cx - tw / 2, cy + 2], [cx - tw / 2, cy + 5],
